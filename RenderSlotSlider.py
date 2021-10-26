@@ -97,14 +97,26 @@ def UPDATE_Swapper_Max(self, context):
             Image.swapper_b = len(Image.render_slots)
 
 
+def draw_item_pre(self, context):
+    layout = self.layout
+    Image = context.space_data.image
+
+    if Image:
+        if Image.type == "RENDER_RESULT":
+
+            row = layout.row(align=True)
+            operator = row.operator("render.render", icon="RENDER_STILL")
+            operator.use_viewport=False
+
+
 def draw_item(self, context):
 
     layout = self.layout
     Image = context.space_data.image
-    print(context.space_data.type)
 
     if Image:
         if Image.type == "RENDER_RESULT":
+
             row = layout.row(align=True)
             operator = row.operator("render_slot_slider.operator", text="", icon="TRIA_LEFT")
             operator.direction = "BACK"
@@ -112,9 +124,39 @@ def draw_item(self, context):
             operator = row.operator("render_slot_slider.operator", text="", icon="TRIA_RIGHT")
             operator.direction = "NEXT"
 
+
+            row = layout.row(align=True)
+
+
+            operator = row.operator("render.render", icon="RESTRICT_RENDER_OFF")
+            row.popover("RENDERUTILITY_Render_Settings", text='', text_ctxt='', translate=True, icon='NONE', icon_value=0)
+
+            row.operator("render_utility.pack_render", text="Pack", icon="PACKAGE")
+            row.operator("image.save_as", text="Save", icon="FILE_TICK")
+
+
             # row = layout.row(align=True)
             # operator = row.operator("render_slot_slider.swapper", text="", icon="UV_SYNC_SELECT")
             # row.menu("RENDER_SLOT_SWAPPER_MT_menu", text="", icon="TOOL_SETTINGS")
+            #
+
+
+
+        if not Image.type == "RENDER_RESULT":
+            row = layout.row(align=True)
+            if not Image.packed_file:
+                row.operator("image.pack", text="Pack", icon="PACKAGE")
+            else:
+                row.label(text="Packed", icon="PACKAGE")
+                operator = row.operator("file.unpack_item", icon="REMOVE")
+                operator.id_type = 19785
+                operator.id_name = Image.name
+                # row.operator("image.unpack", text="Unpack", icon="TRASH")
+
+            row.operator("image.save", text="Save", icon="FILE_TICK")
+            row.separator()
+            operator = row.operator("render_utility.remove_image", text="", icon="TRASH")
+            operator.image_name = Image.name
 
 classes = [RENDER_SLOT_SLIDER_MT_Swapper_Menu, RENDER_SLOT_SLIDER_OT_Swapper, RENDER_SLOT_SLIDER_OT_Next_Slot]
 
@@ -140,6 +182,7 @@ def unregister():
         bpy.utils.unregister_class(cls)
 
     del bpy.types.Image.render_slot_changer
+
     bpy.types.IMAGE_HT_header.remove(draw_item)
 
     del bpy.types.Image.swapper_a

@@ -12,8 +12,10 @@ bl_info = {
 
 import bpy
 from . import RenderSlotSlider
+from . import Pack_Render
+from . import Remove_Image
 
-modules = [RenderSlotSlider]
+modules = [Remove_Image, Pack_Render, RenderSlotSlider]
 
 def register():
     for module in modules:
