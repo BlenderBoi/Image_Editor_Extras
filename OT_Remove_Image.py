@@ -1,8 +1,8 @@
 import bpy
 
-class RENDERUTILITY_OT_Remove_Image(bpy.types.Operator):
+class IEH_OT_Remove_Image(bpy.types.Operator):
     """Remove Image"""
-    bl_idname = "render_utility.remove_image"
+    bl_idname = "image_editor_helper.remove_image"
     bl_label = "Remove Image"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -18,7 +18,7 @@ class RENDERUTILITY_OT_Remove_Image(bpy.types.Operator):
         return {'FINISHED'}
 
 
-classes = [RENDERUTILITY_OT_Remove_Image]
+classes = [IEH_OT_Remove_Image]
 
 def register():
 

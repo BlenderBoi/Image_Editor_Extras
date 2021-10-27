@@ -1,21 +1,31 @@
 
 bl_info = {
-    "name": "Render Slot Slider",
+    "name": "Image Editor Helper",
     "author": "BlenderBoi",
     "version": (1, 0),
     "blender": (2, 80, 0),
-    "description": "Adds a Slider to Change Render Slots",
+    "description": "Some Helper in Image Editor",
     "warning": "",
     "doc_url": "",
     "category": "Image Editor",
 }
 
-import bpy
-from . import RenderSlotSlider
-from . import Pack_Render
-from . import Remove_Image
 
-modules = [Remove_Image, Pack_Render, RenderSlotSlider]
+import bpy
+
+from . import Draw_Image_Editor_Header
+from . import OT_Next_Slot
+from . import OT_Pack_Render
+from . import OT_Remove_Image
+from . import Preferences
+from . import PROP_Slot_Changer
+from . import PT_Popup_Panels
+
+from . import OT_Duplicate_Pack
+
+from . import OT_Save_And_Load
+
+modules = [OT_Duplicate_Pack, OT_Save_And_Load, PT_Popup_Panels, Draw_Image_Editor_Header, OT_Next_Slot, OT_Pack_Render, OT_Remove_Image, PROP_Slot_Changer, Preferences]
 
 def register():
     for module in modules:
