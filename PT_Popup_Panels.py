@@ -18,13 +18,12 @@ class IEH_PT_Render_Settings_Panel(bpy.types.Panel):
         col = layout.column(align=True)
 
         col.prop(context.scene, "camera", text="", icon="CAMERA_DATA")
-        col.prop(context.scene.render, "film_transparent", text="Transparent")
         col.separator()
-
         col.prop(context.scene, "frame_current", text="Frame")
+        col.prop(context.scene.render, "film_transparent", text="Transparent")
 
         col.separator()
-        layout.label(text="Resolution")
+        col.label(text="Resolution")
         row = col.row(align=True)
         row.prop(rd, "resolution_x", text="X")
         row.prop(rd, "resolution_y", text="Y")
