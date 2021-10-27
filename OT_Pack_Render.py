@@ -1,6 +1,7 @@
 import bpy
 import os
 import pathlib
+import tempfile
 
 class IEH_OT_Pack_Render(bpy.types.Operator):
     """Pack Rendered Image"""
@@ -38,7 +39,7 @@ class IEH_OT_Pack_Render(bpy.types.Operator):
         # context.scene.view_settings.view_transform = "Standard"
 
         render_output = context.scene.render.filepath
-        temp_directory = "/tmp/"
+        temp_directory = tempfile.gettempdir()
         name = "TEMP_PACK_BLENDER_RENDER_RESULT"
 
         filepath = os.path.join(temp_directory, name)

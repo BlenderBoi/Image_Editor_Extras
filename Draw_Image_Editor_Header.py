@@ -9,6 +9,11 @@ def draw_image_editor_header(self, context):
     preferences = Utility_Functions.get_addon_preferences()
 
     row = layout.row(align=True)
+
+    if preferences.BTN_Open_Viewport:
+        operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
+        row.separator()
+
     if preferences.BTN_Render:
         operator = row.operator("render.render", icon="RESTRICT_RENDER_OFF")
     if preferences.PROP_Render_Percentage:

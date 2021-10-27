@@ -1,6 +1,7 @@
 import bpy
 import os
 import pathlib
+import tempfile
 
 class IEH_OT_Duplicate_Pack(bpy.types.Operator):
     """Duplicate Pack"""
@@ -22,7 +23,7 @@ class IEH_OT_Duplicate_Pack(bpy.types.Operator):
         view_transform = context.scene.view_settings.view_transform
 
         render_output = context.scene.render.filepath
-        temp_directory = "/tmp/"
+        temp_directory = tempfile.gettempdir()
         name = "TEMP_PACK_BLENDER_DUPLICATE_IMAGE"
 
         Image = context.space_data.image
