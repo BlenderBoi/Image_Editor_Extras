@@ -19,32 +19,41 @@ class IEH_OT_Open_Viewport(bpy.types.Operator):
 
         View_3D_Check = False
 
+        cur_area = context.area
+
+
         for area in context.screen.areas:
             if area.type == "VIEW_3D":
+
                 View_3D_Check = True
+                # print(area.type)
+                # print(area.x)
+                # print(area.width)
+                #
+                # print(cur_area.type)
+                # print(cur_area.x)
+                # print(cur_area.width)
+                # print(area.x - cur_area.x + cur_area.width)
 
-                Area_1 = None
-                Area_2 = area
+                if (area.x - (cur_area.x + cur_area.width)) < 5:
 
+                    if area.y == cur_area.y:
 
-                for area2 in context.screen.areas:
-                    if area2.type == "IMAGE_EDITOR":
-                        Area_1 = area2
+                        Area_1 = cur_area
+                        Area_2 = area
 
-                if Area_1 and Area_2:
-                    bpy.ops.screen.area_swap(cursor=(Area_1.width, Area_1.y))
-                    # bpy.ops.screen.area_join("INVOKE_DEFAULT", cursor=(Area_1.width, Area_1.y))
+                        if Area_1 and Area_2:
+                            # print("a")
+                            # bpy.ops.screen.area_swap(cursor=(Area_1.x + Area_1.width, Area_1.y))
+                            # bpy.ops.screen.area_join("INVOKE_DEFAULT", cursor=(Area_1.width, Area_1.y))
 
-                    bpy.ops.screen.area_join(cursor=(Area_1.width, Area_1.y))
-                    bpy.ops.screen.new()
+                            # bpy.ops.screen.area_join(cursor=(Area_1.x + Area_1.width, Area_1.y))
+                            bpy.ops.screen.area_swap(cursor=(Area_2.x, int(Area_1.height/2)))
+                            bpy.ops.screen.area_join(cursor=(Area_2.x, int(Area_1.height/2)))
+                            bpy.ops.screen.new()
 
+                            break
 
-                    break
-                    # return {'FINISHED'}
-                    # bpy.ops.render.view_show("INVOKE_DEFAULT")
-
-
-                break
 
         if View_3D_Check:
             pass
@@ -67,6 +76,7 @@ class IEH_OT_Open_Viewport(bpy.types.Operator):
                             space.region_3d.view_perspective = 'CAMERA'
                             space.overlay.show_overlays = False
                             space.show_gizmo = False
+                            space.show_region_toolbar = False
 
         context.view_layer.update()
 

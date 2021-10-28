@@ -17,9 +17,10 @@ def draw_image_editor_header(self, context):
         row.separator()
 
     if preferences.BTN_Render:
-        row2 = row.row(align=True)
-        row2.operator_context = "EXEC_DEFAULT"
-        operator = row2.operator("render.render", icon="RESTRICT_RENDER_OFF")
+        # row2 = row.row(align=True)
+        # row2.operator_context = "EXEC_DEFAULT"
+        # operator = row2.operator("render.render", icon="RESTRICT_RENDER_OFF")
+        row.operator("image_editor_helper.render", text="Render", icon="RESTRICT_RENDER_OFF")
 
     if preferences.PROP_Render_Percentage:
         row.prop(context.scene.render, "resolution_percentage", text="Size")
