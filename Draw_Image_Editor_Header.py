@@ -1,5 +1,5 @@
 import bpy
-
+import pathlib
 from . import Utility_Functions
 
 #Show Engine
@@ -12,9 +12,14 @@ def draw_image_editor_header(self, context):
 
     row = layout.row(align=True)
 
-    if preferences.BTN_Open_Viewport:
-        operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
-        row.separator()
+
+
+
+
+
+    # if preferences.BTN_Open_Viewport:
+    #     operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
+    #     row.separator()
 
     if preferences.BTN_Render:
         # row2 = row.row(align=True)
@@ -44,7 +49,8 @@ def draw_image_editor_header(self, context):
                 operator.direction = "NEXT"
 
             row = layout.row(align=True)
-
+            row.separator()
+            row.separator()
             # if preferences.BTN_Render:
             #     operator = row.operator("render.render", icon="RESTRICT_RENDER_OFF")
             # if preferences.POPUP_Render_Settings:
@@ -69,10 +75,24 @@ def draw_image_editor_header(self, context):
                         row.operator("image.pack", text="Pack", icon="PACKAGE")
 
                 else:
+                    blend_file = pathlib.Path(bpy.data.filepath).stem
+
                     row.label(text="Packed", icon="PACKAGE")
-                    operator = row.operator("file.unpack_item", icon="REMOVE")
-                    operator.id_type = 19785
-                    operator.id_name = Image.name
+
+
+                    col = row.column(align=True)
+                    if not blend_file:
+                        col.enabled = False
+                        operator = col.operator("file.unpack_item", text="Unpack (Save Your Blend File)", icon="REMOVE")
+                        operator.id_type = 19785
+                        operator.id_name = Image.name
+
+                    if blend_file:
+                        operator = col.operator("file.unpack_item", icon="REMOVE")
+
+                        operator.id_type = 19785
+                        operator.id_name = Image.name
+
 
             if Image.type == "IMAGE":
                 if preferences.BTN_Duplicate:
@@ -91,18 +111,58 @@ def draw_image_editor_header(self, context):
                 operator = row.operator("image_editor_helper.remove_image", text="", icon="TRASH")
                 operator.image_name = Image.name
 
+def draw_tool_settings_toogle(self, context):
+    layout = self.layout
+    preferences = Utility_Functions.get_addon_preferences()
+    space = context.space_data
+
+    if preferences.BTN_Mode_Changer:
+        row = layout.row(align=True)
+
+        if space.mode == "VIEW":
+            row.operator("image_editor_helper.change_mode", text="View", icon="IMAGE_DATA", emboss=False).mode = "VIEW"
+        else:
+            row.operator("image_editor_helper.change_mode", text="View", icon="IMAGE_DATA", emboss=True).mode = "VIEW"
+
+        if space.mode == "PAINT":
+            row.operator("image_editor_helper.change_mode", text="Paint", icon="TPAINT_HLT", emboss=False).mode = "PAINT"
+        else:
+            row.operator("image_editor_helper.change_mode", text="Paint", icon="TPAINT_HLT", emboss=True).mode = "PAINT"
+
+        if space.mode == "UV":
+            row.operator("image_editor_helper.change_mode", text="UV", icon="UV", emboss=False).mode = "UV"
+        else:
+            row.operator("image_editor_helper.change_mode", text="UV", icon="UV", emboss=True).mode = "UV"
+
+        if space.mode == "MASK":
+            row.operator("image_editor_helper.change_mode", text="Mask", icon="MOD_MASK", emboss=False).mode = "MASK"
+        else:
+            row.operator("image_editor_helper.change_mode", text="Mask", icon="MOD_MASK", emboss=True).mode = "MASK"
+
+    if preferences.BTN_Open_Viewport:
+        row.separator()
+        operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
+        row.separator()
+
+        row = layout.row(align=True)
+
+
+
+
+    layout.prop(space, "show_region_tool_header", text="", icon="DOWNARROW_HLT")
+
 
 
 def register():
 
-    bpy.types.IMAGE_HT_header.append(draw_image_editor_header)
-    # bpy.types.IMAGE_HT_tool_header.append(draw_image_editor_header)
+    bpy.types.IMAGE_HT_header.append(draw_tool_settings_toogle)
+    bpy.types.IMAGE_HT_tool_header.append(draw_image_editor_header)
 
 
 def unregister():
 
-    bpy.types.IMAGE_HT_header.remove(draw_image_editor_header)
-    # bpy.types.IMAGE_HT_tool_header.append(draw_image_editor_header)
+    bpy.types.IMAGE_HT_header.remove(draw_tool_settings_toogle)
+    bpy.types.IMAGE_HT_tool_header.remove(draw_image_editor_header)
 
 
 if __name__ == "__main__":

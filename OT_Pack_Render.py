@@ -12,6 +12,10 @@ class IEH_OT_Pack_Render(bpy.types.Operator):
     image_name: bpy.props.StringProperty(default="Image00")
     overwrite: bpy.props.BoolProperty(default=True)
 
+
+
+
+
     def draw(self, context):
         layout = self.layout
 
@@ -43,6 +47,7 @@ class IEH_OT_Pack_Render(bpy.types.Operator):
         name = "TEMP_PACK_BLENDER_RENDER_RESULT"
 
         filepath = os.path.join(temp_directory, name)
+
         # bpy.context.space_data.image.save_render(filepath, scene=bpy.context.scene)
 
         try:
@@ -61,7 +66,22 @@ class IEH_OT_Pack_Render(bpy.types.Operator):
 
             Imported_Image.name = self.image_name
             Imported_Image.use_fake_user = True
-            Imported_Image.filepath = render_output + self.image_name
+
+
+            relative_directory = "//Textures/"
+
+            rel_path = relative_directory + self.image_name
+            tmp_path = temp_directory + self.image_name
+
+            blend_file = pathlib.Path(bpy.data.filepath).stem
+
+            if blend_file:
+                for packed_file in Imported_Image.packed_files:
+                    packed_file.filepath = rel_path
+
+
+
+
         except:
             self.report({"INFO"}, message="Failed to Pack, Possibly an Empty Render Slot")
 

@@ -27,8 +27,9 @@ from . import OT_Save_And_Load
 
 from . import OT_Open_Viewport
 from . import OT_Modified_Render
+from . import OT_Image_Editor_Mode
 
-modules = [OT_Modified_Render, OT_Open_Viewport, OT_Duplicate_Pack, OT_Save_And_Load, PT_Popup_Panels, Draw_Image_Editor_Header, OT_Next_Slot, OT_Pack_Render, OT_Remove_Image, PROP_Slot_Changer, Preferences]
+modules = [OT_Image_Editor_Mode, OT_Modified_Render, OT_Open_Viewport, OT_Duplicate_Pack, OT_Save_And_Load, PT_Popup_Panels, Draw_Image_Editor_Header, OT_Next_Slot, OT_Pack_Render, OT_Remove_Image, PROP_Slot_Changer, Preferences]
 
 def register():
     for module in modules:

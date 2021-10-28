@@ -53,8 +53,10 @@ class IEH_OT_Duplicate_Pack(bpy.types.Operator):
             Imported_Image.name = NAME
             Image.name = NAME
             Imported_Image.use_fake_user = True
-            Imported_Image.filepath = os.path.join(os.path.dirname(Image.filepath), Image.name)
+            Imported_Image.filepath = os.path.join(os.path.dirname(Image.filepath), Imported_Image.name)
             context.space_data.image = Imported_Image
+
+
 
         except:
             self.report({"INFO"}, message="Failed to Pack, Possibly an Empty Render Slot")
