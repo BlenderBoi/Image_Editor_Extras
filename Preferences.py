@@ -15,7 +15,7 @@ class IEH_user_preferences(bpy.types.AddonPreferences):
     BTN_Save: bpy.props.BoolProperty(default=True, name="Save Button")
     BTN_Remove: bpy.props.BoolProperty(default=True, name="Remove Image Button")
     BTN_Duplicate: bpy.props.BoolProperty(default=True, name="Duplicate Pack Button")
-    BTN_Open_Viewport: bpy.props.BoolProperty(default=True, name="Open Viewport")
+    BTN_Open_Viewport: bpy.props.BoolProperty(default=True, name="Toogle Viewport")
 
     POPUP_Render_Settings: bpy.props.BoolProperty(default=True, name="Render Settings Popup")
     PROP_Slot_Changer: bpy.props.BoolProperty(default=True, name="Slot Changer")
