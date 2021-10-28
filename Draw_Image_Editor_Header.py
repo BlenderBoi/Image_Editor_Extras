@@ -20,6 +20,12 @@ def draw_image_editor_header(self, context):
     # if preferences.BTN_Open_Viewport:
     #     operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
     #     row.separator()
+    if Image:
+        if preferences.POPUP_Image_Swapper:
+            row.separator()
+            row.operator("image_editor_helper.swap_image", text="Swap Image", icon="UV_SYNC_SELECT")
+            row.popover("IEH_PT_Swapper_Settings", text='', text_ctxt='', translate=True, icon='NONE', icon_value=0)
+            row.separator()
 
     if preferences.BTN_Render:
         # row2 = row.row(align=True)
@@ -65,6 +71,8 @@ def draw_image_editor_header(self, context):
             if preferences.BTN_Save:
                 # row.operator("image.save_as", text="Save As", icon="FILE_TICK")
                 row.operator("image_editor_helper.save_and_load", text="Save As and Load", icon="FILE_TICK")
+
+
 
         if not Image.type == "RENDER_RESULT":
 

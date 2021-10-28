@@ -23,6 +23,8 @@ class IEH_user_preferences(bpy.types.AddonPreferences):
     PROP_Render_Percentage: bpy.props.BoolProperty(default=True, name="Render Percentage")
     PROP_Frame: bpy.props.BoolProperty(default=True, name="Frame")
 
+    POPUP_Image_Swapper: bpy.props.BoolProperty(default=True, name="Image Swapper")
+
     def draw(self, context):
         layout = self.layout
 
@@ -33,6 +35,7 @@ class IEH_user_preferences(bpy.types.AddonPreferences):
         layout.prop(self, "BTN_Duplicate")
         layout.prop(self, "BTN_Open_Viewport")
         layout.prop(self, "BTN_Mode_Changer")
+        layout.prop(self, "POPUP_Image_Swapper")
 
 
         layout.prop(self, "PROP_Slot_Changer")
