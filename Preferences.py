@@ -17,7 +17,8 @@ class IEH_user_preferences(bpy.types.AddonPreferences):
     BTN_Duplicate: bpy.props.BoolProperty(default=True, name="Duplicate Pack Button")
     BTN_Open_Viewport: bpy.props.BoolProperty(default=True, name="Toogle Viewport")
     BTN_Mode_Changer: bpy.props.BoolProperty(default=True, name="Mode Changer")
-
+    BTN_Render_Engine: bpy.props.BoolProperty(default=True, name="Render Engine")
+    
     POPUP_Render_Settings: bpy.props.BoolProperty(default=True, name="Render Settings Popup")
     PROP_Slot_Changer: bpy.props.BoolProperty(default=True, name="Slot Changer")
     PROP_Render_Percentage: bpy.props.BoolProperty(default=True, name="Render Percentage")
@@ -36,7 +37,7 @@ class IEH_user_preferences(bpy.types.AddonPreferences):
         layout.prop(self, "BTN_Open_Viewport")
         layout.prop(self, "BTN_Mode_Changer")
         layout.prop(self, "POPUP_Image_Swapper")
-
+        layout.prop(self, "BTN_Render_Engine")
 
         layout.prop(self, "PROP_Slot_Changer")
         layout.prop(self, "PROP_Render_Percentage")

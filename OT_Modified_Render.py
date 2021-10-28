@@ -15,7 +15,16 @@ class IEH_OT_Modified_Render(bpy.types.Operator):
             if image.type == "RENDER_RESULT":
                 context.space_data.image = image
 
-        bpy.ops.render.render("EXEC_DEFAULT")
+        # bpy.ops.render.render("EXEC_DEFAULT")
+        render_display_type = context.preferences.view.render_display_type
+
+        context.preferences.view.render_display_type = "NONE"
+
+        bpy.ops.render.render("INVOKE_DEFAULT",use_viewport=True)
+
+        context.preferences.view.render_display_type = render_display_type
+
+
         return {'FINISHED'}
 
 classes = [IEH_OT_Modified_Render]
