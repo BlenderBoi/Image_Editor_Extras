@@ -4,7 +4,7 @@ ENUM_Direction = [("NEXT","Next","Next"),("BACK","Back","Back")]
 
 class IEH_OT_Next_Slot(bpy.types.Operator):
     """Next / Previous Slot"""
-    bl_idname = "image_editor_helper.next_slot"
+    bl_idname = "image_editor_extras.next_slot"
     bl_label = "Render Slot"
     bl_options = {'REGISTER', 'UNDO'}
 

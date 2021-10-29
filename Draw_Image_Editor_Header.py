@@ -18,7 +18,7 @@ def draw_image_editor_header(self, context):
 
 
     # if preferences.BTN_Open_Viewport:
-    #     operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
+    #     operator = row.operator("image_editor_extras.open_viewport", icon="VIEW3D")
     #     row.separator()
 
     if preferences.BTN_Render:
@@ -26,7 +26,7 @@ def draw_image_editor_header(self, context):
         # row2.operator_context = "EXEC_DEFAULT"
         # operator = row2.operator("render.render", icon="RESTRICT_RENDER_OFF")
 
-        row.operator("image_editor_helper.render", text="Render", icon="RESTRICT_RENDER_OFF")
+        row.operator("image_editor_extras.render", text="Render", icon="RESTRICT_RENDER_OFF")
     if preferences.BTN_Render_Engine:
         row.prop(context.scene.render, "engine", text="")
 
@@ -40,7 +40,7 @@ def draw_image_editor_header(self, context):
 
     if preferences.BTN_Open_Viewport:
         row.separator()
-        operator = row.operator("image_editor_helper.open_viewport", icon="VIEW3D")
+        operator = row.operator("image_editor_extras.open_viewport", icon="VIEW3D")
         row.separator()
 
         row = layout.row(align=True)
@@ -48,7 +48,7 @@ def draw_image_editor_header(self, context):
     if Image:
         if preferences.POPUP_Image_Swapper:
             row.separator()
-            row.operator("image_editor_helper.swap_image", text="Swap", icon="UV_SYNC_SELECT")
+            row.operator("image_editor_extras.swap_image", text="Swap", icon="UV_SYNC_SELECT")
             row.popover("IEH_PT_Swapper_Settings", text='', text_ctxt='', translate=True, icon='NONE', icon_value=0)
             row.separator()
 
@@ -60,10 +60,10 @@ def draw_image_editor_header(self, context):
             if preferences.PROP_Slot_Changer:
 
                 row = layout.row(align=True)
-                operator = row.operator("image_editor_helper.next_slot", text="", icon="TRIA_LEFT")
+                operator = row.operator("image_editor_extras.next_slot", text="", icon="TRIA_LEFT")
                 operator.direction = "BACK"
                 row.prop(Image, "render_slot_changer", text="Slot")
-                operator = row.operator("image_editor_helper.next_slot", text="", icon="TRIA_RIGHT")
+                operator = row.operator("image_editor_extras.next_slot", text="", icon="TRIA_RIGHT")
                 operator.direction = "NEXT"
 
             row = layout.row(align=True)
@@ -79,10 +79,10 @@ def draw_image_editor_header(self, context):
                 row = layout.row(align=True)
 
             if preferences.BTN_Pack:
-                row.operator("image_editor_helper.pack_render", text="Pack", icon="PACKAGE")
+                row.operator("image_editor_extras.pack_render", text="Pack", icon="PACKAGE")
             if preferences.BTN_Save:
                 # row.operator("image.save_as", text="Save As", icon="FILE_TICK")
-                row.operator("image_editor_helper.save_and_load", text="Save As and Load", icon="FILE_TICK")
+                row.operator("image_editor_extras.save_and_load", text="Save As and Load", icon="FILE_TICK")
 
 
 
@@ -116,7 +116,7 @@ def draw_image_editor_header(self, context):
 
             if Image.type == "IMAGE":
                 if preferences.BTN_Duplicate:
-                    row.operator("image_editor_helper.duplicate_pack", text="Duplicate (Pack)", icon="DUPLICATE")
+                    row.operator("image_editor_extras.duplicate_pack", text="Duplicate (Pack)", icon="DUPLICATE")
                     row.separator()
 
             if preferences.BTN_Save:
@@ -124,11 +124,11 @@ def draw_image_editor_header(self, context):
                     row.operator("image.save", text="Save*", icon="FILE_TICK")
 
                 # row.operator("image.save_as", text="Save As", icon="FILE_TICK")
-                row.operator("image_editor_helper.save_and_load", text="Save As and Load", icon="FILE_TICK")
+                row.operator("image_editor_extras.save_and_load", text="Save As and Load", icon="FILE_TICK")
 
             if preferences.BTN_Remove:
                 row.separator()
-                operator = row.operator("image_editor_helper.remove_image", text="", icon="TRASH")
+                operator = row.operator("image_editor_extras.remove_image", text="", icon="TRASH")
                 operator.image_name = Image.name
 
 def draw_tool_settings_toogle(self, context):
@@ -140,24 +140,24 @@ def draw_tool_settings_toogle(self, context):
         row = layout.row(align=True)
 
         if space.mode == "VIEW":
-            row.operator("image_editor_helper.change_mode", text="View", icon="IMAGE_DATA", emboss=False).mode = "VIEW"
+            row.operator("image_editor_extras.change_mode", text="View", icon="IMAGE_DATA", emboss=False).mode = "VIEW"
         else:
-            row.operator("image_editor_helper.change_mode", text="View", icon="IMAGE_DATA", emboss=True).mode = "VIEW"
+            row.operator("image_editor_extras.change_mode", text="View", icon="IMAGE_DATA", emboss=True).mode = "VIEW"
 
         if space.mode == "PAINT":
-            row.operator("image_editor_helper.change_mode", text="Paint", icon="TPAINT_HLT", emboss=False).mode = "PAINT"
+            row.operator("image_editor_extras.change_mode", text="Paint", icon="TPAINT_HLT", emboss=False).mode = "PAINT"
         else:
-            row.operator("image_editor_helper.change_mode", text="Paint", icon="TPAINT_HLT", emboss=True).mode = "PAINT"
+            row.operator("image_editor_extras.change_mode", text="Paint", icon="TPAINT_HLT", emboss=True).mode = "PAINT"
 
         if space.mode == "UV":
-            row.operator("image_editor_helper.change_mode", text="UV", icon="UV", emboss=False).mode = "UV"
+            row.operator("image_editor_extras.change_mode", text="UV", icon="UV", emboss=False).mode = "UV"
         else:
-            row.operator("image_editor_helper.change_mode", text="UV", icon="UV", emboss=True).mode = "UV"
+            row.operator("image_editor_extras.change_mode", text="UV", icon="UV", emboss=True).mode = "UV"
 
         if space.mode == "MASK":
-            row.operator("image_editor_helper.change_mode", text="Mask", icon="MOD_MASK", emboss=False).mode = "MASK"
+            row.operator("image_editor_extras.change_mode", text="Mask", icon="MOD_MASK", emboss=False).mode = "MASK"
         else:
-            row.operator("image_editor_helper.change_mode", text="Mask", icon="MOD_MASK", emboss=True).mode = "MASK"
+            row.operator("image_editor_extras.change_mode", text="Mask", icon="MOD_MASK", emboss=True).mode = "MASK"
 
 
 

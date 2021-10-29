@@ -5,7 +5,7 @@ import tempfile
 
 class IEH_OT_Duplicate_Pack(bpy.types.Operator):
     """Duplicate Pack"""
-    bl_idname = "image_editor_helper.duplicate_pack"
+    bl_idname = "image_editor_extras.duplicate_pack"
     bl_label = "Duplicate (Pack)"
     bl_options = {'REGISTER', 'UNDO'}
 

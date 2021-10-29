@@ -8,7 +8,7 @@ import pathlib
 
 class IEH_OT_Save_And_Load(bpy.types.Operator):
     """Save and Load"""
-    bl_idname = "image_editor_helper.save_and_load"
+    bl_idname = "image_editor_extras.save_and_load"
     bl_label = "Save and Load"
     bl_options = {'REGISTER', 'UNDO'}
 

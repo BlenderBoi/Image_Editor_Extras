@@ -5,7 +5,7 @@ import tempfile
 
 class IEH_OT_Pack_Render(bpy.types.Operator):
     """Pack Rendered Image"""
-    bl_idname = "image_editor_helper.pack_render"
+    bl_idname = "image_editor_extras.pack_render"
     bl_label = "Pack Render"
     bl_options = {'REGISTER', 'UNDO'}
 

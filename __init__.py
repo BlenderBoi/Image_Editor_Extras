@@ -1,10 +1,10 @@
 
 bl_info = {
-    "name": "Image Editor Helper",
+    "name": "Image Editor Extras",
     "author": "BlenderBoi",
     "version": (1, 0),
     "blender": (2, 80, 0),
-    "description": "Some Helper in Image Editor",
+    "description": "Some Extra Feature Added in Image Editor",
     "warning": "",
     "doc_url": "",
     "category": "Image Editor",

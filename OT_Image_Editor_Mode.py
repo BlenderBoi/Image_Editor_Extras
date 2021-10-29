@@ -4,7 +4,7 @@ ENUM_Image_Editor_Mode = [("VIEW","View","View"),("PAINT","Paint","Paint"), ("MA
 
 class IEH_OT_Image_Editor_Mode(bpy.types.Operator):
     """Change Image Editor Mode"""
-    bl_idname = "image_editor_helper.change_mode"
+    bl_idname = "image_editor_extras.change_mode"
     bl_label = "Image Editor Mode"
     bl_options = {'REGISTER', 'UNDO'}
 

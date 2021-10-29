@@ -2,7 +2,7 @@ import bpy
 
 class IEH_OT_Remove_Image(bpy.types.Operator):
     """Remove Image"""
-    bl_idname = "image_editor_helper.remove_image"
+    bl_idname = "image_editor_extras.remove_image"
     bl_label = "Remove Image"
     bl_options = {'REGISTER', 'UNDO'}
 

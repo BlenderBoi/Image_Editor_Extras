@@ -63,7 +63,7 @@ class IEH_PT_Swapper_Panel(bpy.types.Panel):
 
         Swapper_A = scene.swapper_a
         Swapper_B = scene.swapper_b
-        layout.operator("image_editor_helper.swap_image", text="Swap Image", icon="UV_SYNC_SELECT")
+        layout.operator("image_editor_extras.swap_image", text="Swap Image", icon="UV_SYNC_SELECT")
         layout.prop(scene, "swapper_a", text="Image A")
         if Swapper_A:
             if Swapper_A.type == "RENDER_RESULT":

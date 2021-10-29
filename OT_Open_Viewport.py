@@ -5,7 +5,7 @@ import tempfile
 
 class IEH_OT_Open_Viewport(bpy.types.Operator):
     """Open Viewport"""
-    bl_idname = "image_editor_helper.open_viewport"
+    bl_idname = "image_editor_extras.open_viewport"
     bl_label = "Viewport"
     bl_options = {'REGISTER', 'UNDO'}
 

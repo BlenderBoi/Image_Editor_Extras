@@ -3,7 +3,7 @@ import bpy
 
 class IEH_OT_Modified_Render(bpy.types.Operator):
     """Render"""
-    bl_idname = "image_editor_helper.render"
+    bl_idname = "image_editor_extras.render"
     bl_label = "Render"
     bl_options = {'REGISTER', 'UNDO'}
 
