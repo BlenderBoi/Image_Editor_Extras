@@ -54,18 +54,31 @@ class IEH_OT_Pack_Render(bpy.types.Operator):
             bpy.ops.image.save_as(save_as_render=True, copy=True, filepath=filepath, relative_path=True, show_multiview=False, use_multiview=False)
 
             # bpy.ops.render.render(write_still=True)
+            check = None
 
             if self.overwrite:
                 check = bpy.data.images.get(self.image_name)
                 if check:
-                    bpy.data.images.remove(check)
+                    check.name = "TEMP_PACK_BLENDER_RENDER_RESULT_OVERWRITE"
+
 
             Imported_Image = bpy.data.images.load(filepath)
             Imported_Image.pack()
             bpy.context.space_data.image = Imported_Image
 
+
+
             Imported_Image.name = self.image_name
             Imported_Image.use_fake_user = True
+
+            if self.overwrite:
+                if check:
+                    if Imported_Image:
+
+                        check.user_remap(Imported_Image)
+                        bpy.data.images.remove(check)
+                    else:
+                        check.name = self.image_name
 
 
             relative_directory = "//Textures/"
