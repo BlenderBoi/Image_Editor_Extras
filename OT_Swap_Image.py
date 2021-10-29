@@ -63,21 +63,13 @@ class IEH_OT_Swap_Image(bpy.types.Operator):
         #Redo and Fix Render Slot Problem
 
         if A and B:
-            if Image == A:
-                context.space_data.image = B
-
-
-            elif Image == B:
-                context.space_data.image = A
-
-
-            else:
-                context.space_data.image = A
 
 
             if A == B:
-                if A.type == "RENDER_RESULT":
 
+                context.space_data.image = A
+
+                if A.type == "RENDER_RESULT":
 
                     if context.space_data.image.render_slot_changer == int(scn.swapper_a_slot)+1:
 
@@ -90,6 +82,29 @@ class IEH_OT_Swap_Image(bpy.types.Operator):
                     else:
 
                         context.space_data.image.render_slot_changer = int(scn.swapper_a_slot)+1
+            else:
+
+
+                if Image == A:
+                    context.space_data.image = B
+
+                    if B.type == "RENDER_RESULT":
+                        context.space_data.image.render_slot_changer = int(scn.swapper_b_slot)+1
+
+
+                elif Image == B:
+
+                    context.space_data.image = A
+
+                    if A.type == "RENDER_RESULT":
+                        context.space_data.image.render_slot_changer = int(scn.swapper_a_slot)+1
+
+                else:
+                    context.space_data.image = A
+
+                    if A.type == "RENDER_RESULT":
+                        context.space_data.image.render_slot_changer = int(scn.swapper_a_slot)+1
+
 
         return {'FINISHED'}
 
