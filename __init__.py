@@ -5,7 +5,7 @@ bl_info = {
     "version": (1, 0),
     "blender": (2, 80, 0),
     "description": "Some Extra Feature Added in Image Editor",
-    "warning": "",
+    "warning": "This Addon is No Longer Being Maintained by BlenderBoi, Feel free to Fork this Addon and Maintain it. ",
     "doc_url": "",
     "category": "Image Editor",
 }
